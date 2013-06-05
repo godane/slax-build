@@ -1,0 +1,13 @@
+[KSudokuGame]
+Difficulty=0
+SelectedPuzzle=0
+Symmetry=1
+
+[MainWindow]
+Height=589
+State=AAAA/wAAAAD9AAAAAAAAAp0AAAH9AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAHABhAGMAdABpAG8AbgBzAFQAbwBvAGwAYgBhAHIBAAAAQ/////8AAAAAAAAAAA==
+ToolBarsMovable=Disabled
+Width=669
+
+[Themes]
+theme=themes/ksudoku_scrible.desktop

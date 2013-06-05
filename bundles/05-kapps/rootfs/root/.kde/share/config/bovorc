@@ -1,0 +1,12 @@
+[Game]
+Losses=4
+Wins=1
+
+[KgDifficulty]
+Level=Medium
+
+[MainWindow]
+Height=496
+State=AAAA/wAAAAD9AAAAAAAAAaEAAAGkAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width=417

@@ -1,0 +1,141 @@
+#!/bin/bash
+# Author: Tomas M <www.slax.org>
+
+# make sure we're in the same directory like the build script
+cd "$(dirname "$0")"
+
+# ------------------------------------------------------
+# Variables
+# ------------------------------------------------------
+
+case "$(uname -m)" in
+   i?86) SLAX_ARCH=i486 ;;
+   arm*) SLAX_ARCH=arm ;;
+      *) SLAX_ARCH=$(uname -m) ;;
+esac
+
+case "$SLAX_ARCH" in
+   i486) SLAX_CFLAGS="-Os -march=i486 -mtune=i686"
+         SLAX_LIBDIR=/usr/lib
+         SLAX_64_FLAG=""
+         ;;
+   x86_64) SLAX_CFLAGS="-Os -fPIC"
+           SLAX_LIBDIR=/usr/lib64
+           SLAX_64_FLAG="64"
+           ;;
+esac
+
+SLAX_CONFIGURE_OPTIONS="--prefix=/usr --libdir=$SLAX_LIBDIR --build=$SLAX_ARCH-slackware-linux"
+SLAX_CURRENT_BUILDSCRIPT_DIR=$(pwd)
+SLAX_BUNDLE_TARGET="${SLAX_CURRENT_BUILDSCRIPT_DIR}/package-$$-sb-target-dir/"
+
+# ------------------------------------------------------
+# Functions
+# ------------------------------------------------------
+
+check_variables_for_errors()
+{
+   if [ "${SLAX_BUNDLE_NAME}" = "" -o "$(echo "${SLAX_BUNDLE_NAME}" | tr -d "[:alnum:]-_+")" != "" ]; then
+      echo "Please specify valid SLAX_BUNDLE_NAME variable"
+      echo "Ensure it contains only letters or numbers or - _ +"
+      exit 1
+   fi
+
+   if [ "${SLAX_BUNDLE_VERSION}" = "" ]; then
+      echo "Please specify SLAX_BUNDLE_VERSION"
+      exit 1
+   fi
+
+   if [ "${SLAX_BUNDLE_DESCRIPTION}" = "" ]; then
+      echo "Please specify SLAX_BUNDLE_DESCRIPTION"
+      exit 1
+   fi
+
+   if [ "${SLAX_BUNDLE_CATEGORIES}" = "" ]; then
+      echo "Please specify at least one category in SLAX_BUNDLE_CATEGORIES"
+      exit 1
+   fi
+
+   if [ "$(echo "${SLAX_BUNDLES_REQUIRED}" | tr -d "[:alnum:]-_+, ")" != "" ]; then
+      echo "Invalid character found in SLAX_BUNDLES_REQUIRED"
+      exit 1
+   fi
+
+   if [ "$(echo "${SLAX_BUNDLES_REQUIRED_TO_COMPILE_ONLY}" | tr -d "[:alnum:]-_+, ")" != "" ]; then
+      echo "Invalid character found in SLAX_BUNDLES_REQUIRED_TO_COMPILE_ONLY"
+      exit 1
+   fi
+
+   if [ "${SLAX_BUNDLE_MAINTAINER_NAME}" = "" ]; then
+      echo "Please specify SLAX_BUNDLE_MAINTAINER_NAME"
+      exit 1
+   fi
+
+   if [ "${SLAX_BUNDLE_MAINTAINER_EMAIL}" = "" ]; then
+      echo "Please specify SLAX_BUNDLE_MAINTAINER_EMAIL"
+      exit 1
+   fi
+
+   if [ "$(echo ${SLAX_BUNDLE_SOURCE_DOWNLOAD[@]} | tr -d " ")" = "" ]; then
+      echo "Please specify at least one download URL"
+      exit 1
+   fi
+
+   if ls -1 ${SLAX_CURRENT_BUILDSCRIPT_DIR} | fgrep -vq "$(basename "$0")"; then
+      echo "Warning, some files or directories detected in buildscript directory"
+      echo "It is recommended to always run build script from a directory which"
+      echo "is empty (contains only the build script)"
+   fi
+}
+
+download_all_sources()
+{
+   local i
+
+   for i in "${SLAX_BUNDLE_SOURCE_DOWNLOAD[@]}"; do
+      if echo "$i" | grep -q "://"; then
+         wget -c "$i"
+      fi
+   done
+}
+
+extract_all_sources()
+{
+   local i
+
+   for i in "${SLAX_BUNDLE_SOURCE_DOWNLOAD[@]}"; do
+      if echo "$i" | grep -q "://"; then
+         tar -xf "$(basename "$i")"
+      fi
+   done
+}
+
+init_bundle_target_dir()
+{
+   mkdir -p "${SLAX_BUNDLE_TARGET}"
+   rm -Rf "${SLAX_BUNDLE_TARGET}"
+   mkdir -p "${SLAX_BUNDLE_TARGET}"
+}
+
+create_slax_bundle()
+{
+   if [ "${SLAX_BUNDLES_REQUIRED}" != "" ]; then
+     mkdir -p "${SLAX_BUNDLE_TARGET}"/run
+     echo "${SLAX_BUNDLES_REQUIRED}" | tr "," " " > "${SLAX_BUNDLE_TARGET}"/run/requires
+   fi
+   dir2sb "${SLAX_BUNDLE_TARGET}" "${SLAX_CURRENT_BUILDSCRIPT_DIR}"/"${SLAX_BUNDLE_NAME}".sb
+}
+
+activate_required_bundles()
+{
+   local BUNDLE
+
+   for BUNDLE in $(echo ${SLAX_BUNDLES_REQUIRED} ${SLAX_BUNDLES_REQUIRED_TO_COMPILE_ONLY} | tr ',' ' '); do
+      slax activate $BUNDLE
+   done
+}
+
+strip_unneeded_objects()
+{
+   find "${SLAX_BUNDLE_TARGET}" -type f | xargs -r strip --strip-unneeded
+}

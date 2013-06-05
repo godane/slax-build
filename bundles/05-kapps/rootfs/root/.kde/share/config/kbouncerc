@@ -1,0 +1,11 @@
+[$Version]
+update_info=kgthemeprovider-migration.upd:kbounce
+
+[KgDifficulty]
+Level=Easy
+
+[MainWindow]
+Height=464
+State=AAAA/wAAAAD9AAAAAAAAAkAAAAGAAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width=576

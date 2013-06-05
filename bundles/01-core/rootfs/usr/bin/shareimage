@@ -1,0 +1,44 @@
+#!/bin/bash
+
+usage()
+{
+   echo "Upload image to Slax server as a screenshot" >&2
+   echo "usage: $0 [ filename.png ] [ appname ]" >&2
+   exit 1
+}
+
+UPLOAD=/tmp/slax-upload-$$
+BOUNDARY="$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM"
+NAME="$2"
+
+if [ "$1" = "" -o "$1" = "-h" -o "$1" = "--help" ]; then
+   usage
+fi
+
+if [ "$NAME" = "" ]; then
+   SUGGEST="$(ps -ef | fgrep -v "[" | tr -s " " | cut -d " " -f 8 | egrep -v "\\b(ksnapshot|ps|fgrep|egrep|grep|tail|bash|konsole|ksystraycmd|kioexec|cut|tr)\\b" | tail -n 1)"   #"
+   SUGGEST="$(basename "$SUGGEST")"
+   NAME="$(kdialog --title "Enter application name" --icon document-share --inputbox "The image will be uploaded to Slax server as a screenshot. Enter the application name to which this screenshot belongs to:" "$SUGGEST" 2>/dev/null)"
+fi
+
+if [ "$NAME" = "" ]; then
+   usage
+fi
+
+trap "rm -f $UPLOAD" EXIT
+
+echo -ne > $UPLOAD
+echo -ne '--'$BOUNDARY'\r\nContent-Disposition: form-data; name="upload['$i']"; filename="'"$NAME"'"\r\nContent-Type: application/octet-stream\r\n\r\n' >> $UPLOAD
+cat "$1" >> $UPLOAD
+echo -ne '\r\n--'$BOUNDARY'--\r\n' >> $UPLOAD
+
+VER="$(cat /etc/slax-version)"
+ERR="$(wget --no-check-certificate -q -O - --post-file "$UPLOAD" --header "X-Slax-Version: $VER" --header "Content-Type: multipart/form-data; boundary="$BOUNDARY "https://www.slax.org/upload_image.php")"
+
+if [ "$ERR" = "" ]; then
+   kdialog --msgbox "Image uploaded to Slax server.\nThank you very much." --title "Upload finished" --icon document-share 2>/dev/null
+else
+   echo "Error uploading image to Slax server: $ERR" >&2
+   kdialog --error "Error uploading image to Slax server: $ERR" --title "Upload error" --icon document-share 2>/dev/null
+   exit 2
+fi

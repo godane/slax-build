@@ -1,0 +1,35 @@
+[$Version]
+update_info=ksmserver.upd:kde3
+
+[General]
+screenCount=1
+
+[LegacySession: saved at previous logout]
+count=0
+
+[Session: saved at previous logout]
+clientId1=10736c6178000135060270400000033110000
+clientId2=10736c6178000135075934200000024290014
+count=2
+discardCommand1[$e]=rm,$HOME/.kde/share/config/session/kwin_10736c6178000135060270400000033110000_1350760778_586177
+discardCommand2[$e]=\\0
+program1=kwin
+program2=krandrtray
+restartCommand1=kwin,-session,10736c6178000135060270400000033110000_1350760778_586177
+restartCommand2=krandrtray,-session,10736c6178000135075934200000024290014_1350760778_583314
+restartStyleHint1=0
+restartStyleHint2=0
+userId1=root
+userId2=root
+wasWm1=true
+wasWm2=false
+
+[SubSession: 90127815-c2bb-4f34-9ca2-d04fbecab3c2]
+clientId1=10736c6178000135075393500000024340008
+count=1
+discardCommand1[$e]=rm,$HOME/.kde/share/config/session/konsole_10736c6178000135075393500000024340008_1350754899_829603
+program1=/usr/bin/konsole
+restartCommand1=/usr/bin/konsole,-session,10736c6178000135075393500000024340008_1350754899_829603
+restartStyleHint1=0
+userId1=root
+wasWm1=false

@@ -1,0 +1,2 @@
+For Slax, I've included just the smallest firmware drivers.
+The bigger ones must be installed from linux-firmware package.

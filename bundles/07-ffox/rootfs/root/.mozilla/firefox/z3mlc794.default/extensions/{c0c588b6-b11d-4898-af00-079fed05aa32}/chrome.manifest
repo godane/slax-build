@@ -1,0 +1,19 @@
+skin browser      FXChrome chrome/browser/  appversion>16.9
+skin communicator      FXChrome chrome/communicator/  appversion>15.9
+skin mozapps      FXChrome chrome/mozapps/  appversion>16.9
+skin global      FXChrome chrome/global/  appversion>16.9
+
+skin browser      FXChrome chrome18/browser/  appversion>17.9
+skin communicator      FXChrome chrome18/communicator/  appversion>17.9
+skin mozapps      FXChrome chrome18/mozapps/   appversion>17.9
+skin global      FXChrome chrome18/global/  appversion>17.9
+
+skin browser      FXChrome chrome19/browser/  appversion>18.9
+skin communicator      FXChrome chrome19/communicator/  appversion>18.9
+skin mozapps      FXChrome chrome19/mozapps/   appversion>18.9
+skin global      FXChrome chrome19/global/  appversion>18.9
+
+skin browser      FXChrome chrome20/browser/  appversion>19.9
+skin communicator      FXChrome chrome20/communicator/  appversion>19.9
+skin mozapps      FXChrome chrome20/mozapps/   appversion>19.9
+skin global      FXChrome chrome20/global/  appversion>19.9

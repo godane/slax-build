@@ -1,0 +1,74 @@
+html {
+  background: white;
+}
+
+body {
+ padding: 32px;
+}
+
+#errorPageContainer {
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: none;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  padding: 0px 10px 0;
+}
+
+#errorTitleText {
+  margin: 0;
+}
+
+body.private #errorTitle {
+  -moz-margin-start: 2px;
+}
+
+body.private #errorLongContent {
+  -moz-margin-start: 2px;
+}
+
+body.private > #errorPageContainer {
+  background-image: url("chrome://browser/skin/Privacy-48-2.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+body.normal > #errorPageContainer {
+  background-image: url("chrome://global/skin/icons/question-48.png");
+}
+
+#clearRecentHistoryDesc {
+  margin-top: 2em;
+}
+
+#clearRecentHistoryDesc > p {
+  font-size: 110%; /* to match the value set in chrome://global/skin/netError.css */
+}
+
+#startPrivateBrowsingDesc > button {
+  -moz-margin-start: 0;
+}
+
+#footerDesc > p {
+  font-size: 75%;
+}
+
+#moreInfo {
+  font-size: 75%;
+  -moz-padding-start: 25px;
+  background: url("chrome://global/skin/icons/information-16.png") no-repeat top left;
+}
+
+#moreInfo:dir(rtl) {
+  background-position: top right;
+}
+
+#moreInfoText {
+  margin-bottom: 0;
+}
+
+#moreInfoLinkContainer {
+  margin-top: 0.5em;
+}

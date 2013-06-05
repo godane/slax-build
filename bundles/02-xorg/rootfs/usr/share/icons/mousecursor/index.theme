@@ -1,0 +1,5 @@
+[Icon Theme]
+Name=airo
+Comment=Downloaded from kde-look.org
+Example=left_ptr
+Inherits=core

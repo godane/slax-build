@@ -1,0 +1,145 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+/* Toolbar */
+#placesToolbar {
+  padding: 3px;
+  -moz-padding-end: 22px;
+  -moz-appearance: none;
+  background: linear-gradient(#EFEFEF, #ECECEC, #E7E7E7);
+  border-bottom: 1px solid #D4D4D4;
+  color: black;
+}
+
+#placesToolbar > toolbarbutton[disabled] > .toolbarbutton-icon {
+  opacity: .4;
+}
+
+#back-button,
+#forward-button {
+  list-style-image: url("chrome://browser/skin/Toolbar.png");
+}
+
+#back-button {
+  -moz-image-region: rect(0, 18px, 18px, 0);
+}
+
+#forward-button {
+  -moz-image-region: rect(0, 36px, 18px, 18px);
+}
+
+#back-button:-moz-locale-dir(rtl) > .toolbarbutton-icon,
+#forward-button:-moz-locale-dir(rtl) > .toolbarbutton-icon {
+  transform: scaleX(-1);
+}
+
+/* Menu */
+#placesMenu {
+  -moz-appearance: none;
+  border: none;
+}
+
+#placesMenu > menu {
+  -moz-appearance: none;
+  padding: 1px 3px;
+  margin-top: 0px; 
+  margin-bottom: 0px;
+  background: transparent;
+  background-clip: padding-box; 
+  border: 1px solid;
+  border-color: transparent;
+  border-width: 5px;
+  box-shadow: none;
+}
+
+#placesMenu > menu:hover {
+  -moz-border-image: url("chrome://global/skin/icons/browser_action_hot.png") 5 fill repeat stretch;
+}
+
+#placesMenu > menu:hover:active,
+#placesMenu > menu[open="true"] {
+  -moz-border-image: url("chrome://global/skin/icons/browser_action_pressed.png") 5 fill repeat stretch;
+}
+
+#placesMenu > menu > .menubar-text {
+  display: none;
+}
+
+#clearDownloadsButton {
+  padding: 1px 3px;
+  list-style-image: url("chrome://browser/skin/places/trash.png");
+  -moz-image-region: rect(0px, 16px, 16px, 0px);
+}
+
+#clearDownloadsButton > .toolbarbutton-text {
+  display: none;
+}
+
+/* Root View */
+#placesView {
+  background-color: Window;
+}
+
+/* Info box */
+#detailsDeck {
+  padding: 5px;
+}
+
+#infoBoxExpanderLabel {
+  -moz-padding-start: 2px;
+}
+
+/* organize, view and maintenance buttons icons */
+#organizeButton, 
+#viewMenu, 
+#maintenanceButton {
+  list-style-image: url("chrome://browser/skin/places/libraryToolbar.png");
+}
+
+/* organize button */
+#organizeButton {
+  -moz-image-region: rect(0px, 16px, 16px, 0px);
+}
+
+/* view button */
+#viewMenu {
+  -moz-image-region: rect(0px, 32px, 16px, 16px);
+}
+
+/* maintenance button */
+#maintenanceButton {
+  -moz-image-region: rect(0px, 48px, 16px, 32px);
+}
+
+#clearDownloadsButton {
+  list-style-image: url("chrome://browser/skin/places/trash.png");
+  -moz-image-region: rect(0px, 16px, 16px, 0px);
+}
+
+#clearDownloadsButton > .toolbarbutton-text {
+  display: none;
+}
+
+#searchFilter {
+  transition: width 200ms;
+  margin: 0;
+  height: 29px;
+  border: 1px solid #d9d9d9;
+  border-radius: 1px;
+  border-top: 1px solid #c0c0c0;
+  width: 150px;
+  color: #333;
+  background-color: #fff;
+}
+
+#searchFilter:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+}
+
+#searchFilter[focused="true"] {
+  border: 1px solid rgb(77, 144, 254);
+  width: 240px;
+}

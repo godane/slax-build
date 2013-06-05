@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/x-slax-bundle">
+        <comment>Slax Bundle</comment>
+        <icon name="slax-bundle"/>
+        <glob-deleteall/>
+        <glob pattern="*.sb"/>
+    </mime-type>
+</mime-info>

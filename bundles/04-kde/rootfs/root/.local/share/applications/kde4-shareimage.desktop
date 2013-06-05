@@ -1,0 +1,10 @@
+[Desktop Entry]
+GenericName=Upload image to Slax server
+Name=Share Image
+MimeType=image/png
+Exec=ksystraycmd --ownicon --icon document-share --tooltip "Share screenshot on Slax website" shareimage "%u"
+Icon=document-share
+Type=Application
+Terminal=false
+StartupNotify=false
+X-KDE-StartupNotify=false

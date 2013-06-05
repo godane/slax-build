@@ -1,0 +1,4 @@
+[Dolphin]
+Version=3
+ViewMode=1
+VisibleRoles=CustomizedDetails,Details_text,Details_size,Details_permissions,Details_date

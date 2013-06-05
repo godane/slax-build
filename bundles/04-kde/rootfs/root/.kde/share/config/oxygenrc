@@ -1,0 +1,13 @@
+[ActiveShadow]
+Size=20
+VerticalOffset=0
+
+[InactiveShadow]
+Size=20
+
+[Windeco Exception 0]
+Enabled=true
+HideTitleBar=true
+Mask=0
+Pattern=Mozilla Firefox
+Type=Window Title

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+getscpid()
+{
+   ps -ef | grep '[f]irefox -P sc -' | tr -s " " | cut -d " " -f 2
+}
+
+FPID="$(getscpid)"
+
+if [ "$FPID" != "" ]; then
+   kill $FPID
+   while [ "$FPID" != "" ]; do
+      usleep 100000
+      FPID="$(getscpid)"
+   done
+fi
+
+firefox -P sc -no-remote

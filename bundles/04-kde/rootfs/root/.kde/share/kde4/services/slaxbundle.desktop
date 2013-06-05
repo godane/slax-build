@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin,application/x-slax-bundle
+StartupNotify=false
+
+Actions=SlaxBundle
+
+[Desktop Action SlaxBundle]
+Name=Activate Slax Bundle
+Exec=GUI=true /sbin/slax activate "%u"
+Icon=slax-bundle

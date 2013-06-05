@@ -1,0 +1,23 @@
+[General]
+PastQueries=\\0
+
+[PlasmaRunnerManager]
+LaunchCounts=
+
+[Plugins]
+Kill RunnerEnabled=true
+PowerDevilEnabled=true
+bookmarksEnabled=true
+calculatorEnabled=true
+desktopsessionsEnabled=true
+locationsEnabled=true
+org.kde.activitiesEnabled=true
+org.kde.windowedwidgetsEnabled=true
+placesEnabled=true
+plasma-desktopEnabled=true
+recentdocumentsEnabled=true
+servicesEnabled=true
+shellEnabled=true
+solidEnabled=true
+webshortcutsEnabled=true
+windowsEnabled=false

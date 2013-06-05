@@ -1,0 +1,154 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* ===== menulist.css ===================================================
+  == Styles used by the XUL menulist element.
+  ======================================================================= */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/* :::::::::: menulist :::::::::: */
+
+menulist {
+  -moz-appearance: none;
+  background-image: -moz-linear-gradient(#ededed, #ededed 38%, #dedede);
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08),
+      inset 0 1px 2px rgba(255, 255, 255, 0.75);
+  color: #444;
+  font: inherit;
+  margin: 2px 4px 3px 4px;
+  text-shadow: 0 1px 0 rgb(240, 240, 240);
+  min-width: 5em;
+  min-height: 24px;
+  transition: border-color .15s, background-color .15s;
+}
+
+menulist:not([disabled="true"]):not([open="true"]):not([checked="true"]):hover {
+  background-image: -moz-linear-gradient(#f0f0f0, #f0f0f0 38%, #e0e0e0);
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12),
+      inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  color: black;
+}
+
+menulist:not([disabled="true"]):hover:active {
+  background-image: -moz-linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7);
+  box-shadow: none;
+  text-shadow: none;
+  color: black;
+}
+
+menulist[open="true"],
+menulist[checked="true"] {
+  transition: border-color 200ms;
+  border-color: #4080fa;
+  color: black;
+}
+
+.menulist-label-box {
+  -moz-box-align: center;
+  -moz-box-pack: center;
+  padding: 1px 2px;
+}
+
+.menulist-icon[src] {
+  margin: 0px 2px 0px 2px;
+}
+
+.menulist-description {
+  font-style: italic;
+  color: GrayText;
+  -moz-margin-start: 1ex !important;
+}
+
+/* ..... dropmarker ..... */
+
+.menulist-dropmarker {
+  -moz-appearance: none;
+  background-color: transparent;
+  border: none;
+  height: auto;
+  list-style-image: url("chrome://global/skin/icons/select.png");
+  -moz-image-region: rect(0, 19px, 8px, 0);
+}
+
+/* ..... focused state ..... */
+
+menulist:-moz-focusring:not([open="true"]) {
+  transition: border-color 200ms;
+  border-color: rgb(77, 144, 254);
+  outline: none;
+}
+
+/* ..... disabled state ..... */
+
+menulist[disabled="true"] {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #999;
+  background-image: -moz-linear-gradient(#ededed, #ededed 38%, #dedede);
+}
+
+menulist[disabled="true"] .menulist-dropmarker {
+  opacity: .5;
+}
+
+/* ::::: editable menulists ::::: */
+
+.menulist-editable-box {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  -moz-padding-start: 2px;
+  -moz-padding-end: 0px;
+}
+
+html|*.menulist-editable-input {
+  margin: 0px !important;
+  border: none !important;
+  padding: 0px !important;
+  background: inherit;
+  font: inherit;
+}
+
+/* ::::: compact menulists ::::: */
+
+.menulist-compact {
+  -moz-appearance: none;
+  -moz-box-align: center;
+  -moz-box-pack: center;
+  margin: 0;
+  -moz-border-top-colors: ThreeDHighlight ThreeDLightShadow;
+  -moz-border-right-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-bottom-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-left-colors: ThreeDHighlight ThreeDLightShadow;
+  background-color: ThreeDFace;
+  color: ButtonText;
+  list-style-image: url("chrome://global/skin/arrow/arrow-dn.gif");
+}
+
+.menulist-compact > .menulist-label-box > .menulist-label {
+  margin: 0 3px !important;
+  text-align: end;
+}  
+
+.menulist-compact > .menulist-label-box > .menulist-icon {
+  -moz-margin-start: 2px;
+}
+
+.menulist-compact[open="true"] {
+  -moz-border-top-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-right-colors: ThreeDDarkShadow ThreeDHighlight;
+  -moz-border-bottom-colors: ThreeDDarkShadow ThreeDHighlight;
+  -moz-border-left-colors: ThreeDDarkShadow ThreeDShadow;
+}
+
+.menulist-compact[disabled="true"] {
+  list-style-image: url("chrome://global/skin/arrow/arrow-dn-dis.gif");
+}

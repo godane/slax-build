@@ -1,0 +1,141 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* ===== button.css =====================================================
+  == Styles used by the XUL button element.
+  ======================================================================= */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* :::::::::: button :::::::::: */
+
+button {
+  -moz-appearance: none;
+  background-image: -moz-linear-gradient(#ededed, #ededed 38%, #dedede);
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08),
+      inset 0 1px 2px rgba(255, 255, 255, 0.75);
+  color: #444;
+  font: inherit;
+  margin: 2px 2px 3px 2px;
+  text-shadow: 0 1px 0 rgb(240, 240, 240);
+  min-width: 4em;
+  min-height: 24px;
+  transition: border-color .15s, background-color .15s;
+  -moz-padding-start: 8px;
+  -moz-padding-end: 8px;
+}
+
+button:not([disabled="true"]):hover {
+  background-image: -moz-linear-gradient(#f0f0f0, #f0f0f0 38%, #e0e0e0);
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12),
+      inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  color: black;
+}
+
+button:not([disabled="true"]):hover:active,
+button:not([disabled="true"])[open="true"],
+button:not([disabled="true"])[checked="true"] {
+  background-image: -moz-linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.button-box {
+  padding: 2px 6px 3px 6px;
+}
+
+.button-text {
+  margin: 0 !important;
+  text-align: center;
+}
+
+/* .......... focused state .......... */
+
+button:-moz-focusring {
+  transition: border-color 200ms;
+  border-color: rgb(77, 144, 254);
+  outline: none;
+}
+
+/* .......... disabled state .......... */
+
+button[disabled="true"] {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #999;
+}
+
+/* ::::: menu/menu-button buttons ::::: */
+
+button[type="menu-button"] {
+  margin: 0;
+  border: none;
+}
+
+.button-menu-dropmarker,
+.button-menubutton-dropmarker {
+  -moz-appearance: none !important;
+  padding: 0px;
+  margin: 0px;
+  background-color: transparent;
+  border: none;
+  list-style-image: url("chrome://global/skin/icons/select.png");
+  -moz-image-region: rect(0, 19px, 8px, 0);
+}
+
+.button-menu-dropmarker {
+  -moz-margin-end: -10px;
+}
+
+/* ::::: plain buttons ::::: */
+
+button.plain {
+  border: 0px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+button[type="disclosure"] {
+  border: 0px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  -moz-appearance: none;
+  list-style-image: url("chrome://global/skin/tree/twisty-clsd.png");
+  min-width: 0px !important;
+  background-color: transparent;
+}
+
+button[type="disclosure"][open="true"] {
+  list-style-image: url("chrome://global/skin/tree/twisty-open.png");
+}
+
+notification > button {
+  -moz-appearance: none !important;
+  background: -moz-linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .5),
+                                   rgba(255, 255, 255, .4)) !important;
+  border: 1px solid rgba(0, 0, 0, .4) !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+}
+
+notification > button:not(:active):hover {
+  border: 1px solid rgba(0, 0, 0, .7) !important;
+}
+
+notification > button:not([disabled="true"]):hover:active,
+notification > button[open="true"],
+notification > button[checked="true"] {
+  background: -moz-linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .5),
+                                   rgba(255, 255, 255, .7)) !important;
+  border: 1px solid rgba(0, 0, 0, .7) !important;
+}
+
+.dialog-button-box .dialog-button,
+.dialog-button-box botton,
+#dialogButtons button,
+.prefWindow-dlgbuttons button {
+  margin: 2px 5px 3px 6px;
+}

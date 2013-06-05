@@ -1,0 +1,83 @@
+#!/bin/bash
+# Author: Tomas M <http://www.slax.org/>
+# Reused Slackware's rc script, added watcher
+
+# If X server fails to start, detect that and try few more things to make sure X works.
+# This is started as a background process which watches Xorg.log file for 20 seconds
+# and then exits (assuming if there was no X error in 20 seconds, it runs just fine).
+# It is active only with xmode boot paramter, so don't use it if you don't like this.
+#
+if grep -q xmode /proc/cmdline; then
+   if [ "$1" != "nowatcher" ]; then
+   (
+      sleep 1
+      echo -e "\nStarting up X11 session manager..."
+      for i in $(seq 1 20); do
+         if fgrep -qi "Fatal server error" /var/log/Xorg.0.log 2>/dev/null; then
+            # On the first try, the xorg.conf file doesn't exist. Use X -configure to geenrate it.
+            if [ ! -r /etc/X11/xorg.conf ]; then
+               echo "Reconfiguring X using X -configure ..."
+               /usr/bin/X -configure 2>&1 | fgrep -i "Using config file" | head -n 1 | cut -d : -f 2 | xargs -I "{}" mv "{}" /etc/X11/xorg.conf
+               touch /etc/X11/xorg.conf # make sure at least empty file is there even if X -configure didn't produce anything
+               exec /etc/rc.d/rc.4
+            else
+               # If we are here, autodetection of X didn't work out
+               # If modesetting driver is enabled as module, use modesetting config
+               # else fallback to simple vesa mode. Configs copied from Porteus
+               if lsmod | grep -qw drm_kms_helper; then
+                  echo "Reconfiguring X to use modesetting driver ..."
+                  cat /etc/X11/xorg.conf-modesetting > /etc/X11/xorg.conf
+               else
+                  echo "Reconfiguring X to use VESA driver ..."
+                  cat /etc/X11/xorg.conf-vesa > /etc/X11/xorg.conf
+               fi
+
+               exec /etc/rc.d/rc.4 nowatcher
+            fi
+         fi
+         sleep 1
+      done
+   ) &
+   else
+      echo
+      echo "Graphical desktop was unable to start automatically."
+      echo "You will have to login and try to fix that manually."
+      echo "If you don't see login prompt, press [Enter]"
+      exit
+   fi
+fi
+
+# Try to use GNOME's gdm session manager.  This comes first because if
+# gdm is on the machine then the user probably installed it and wants
+# to use it by default:
+if [ -x /usr/bin/gdm ]; then
+  exec /usr/bin/gdm -nodaemon
+fi
+
+# Someone thought that gdm looked prettier in /usr/sbin,
+# so look there, too:
+if [ -x /usr/sbin/gdm ]; then
+  exec /usr/sbin/gdm -nodaemon
+fi
+
+# Not there?  OK, try to use KDE's kdm session manager:
+if [ -x /opt/kde/bin/kdm ]; then
+  exec /opt/kde/bin/kdm -nodaemon
+elif [ -x /usr/bin/kdm ]; then
+  exec /usr/bin/kdm -nodaemon
+fi
+
+# If all you have is XDM, I guess it will have to do:
+if [ -x /usr/bin/xdm ]; then
+  exec /usr/bin/xdm -nodaemon
+elif [ -x /usr/X11R6/bin/xdm ]; then
+  exec /usr/X11R6/bin/xdm -nodaemon
+fi
+
+# error
+echo
+echo "Hey, you don't have KDM, GDM, or XDM.  Can't use runlevel 4 without"
+echo "one of those installed."
+sleep 30
+
+# All done.

@@ -1,0 +1,14 @@
+[General]
+ShowPreferencesForNewConnections=false
+WalletSupport=false
+
+[MainWindow]
+Height=650
+State=AAAA/wAAAAD9AAAAAQAAAAAAAACxAAACWPwCAAAAAfsAAAAwAHIAZQBtAG8AdABlAEQAZQBzAGsAdABvAHAAcwBEAG8AYwBrAFcAaQBkAGcAZQB0AQAAADIAAAJYAAAAigEAAAUAAAMgAAACWAAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAABAAAAMABrAHIAZABjAF8AcgBlAG0AbwB0AGUAXwB2AGkAZQB3AF8AdABvAG8AbABiAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width=980
+
+[Plugins]
+krdc_rdppluginEnabled=true
+krdc_testpluginEnabled=false
+krdc_vncpluginEnabled=true

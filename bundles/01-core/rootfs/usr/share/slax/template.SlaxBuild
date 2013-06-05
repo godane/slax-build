@@ -1,0 +1,213 @@
+#!/bin/bash
+. /usr/share/slax/slaxbuildlib
+#
+#   This is a template build script for Slax.
+#   Read all the comments in order to understand how to use it.
+#   Basically you fill in some necessary data and you run it.
+#
+#   If it produces Slax module properly, you may upload it
+#   to Slax server by using command:
+#
+#       $ slax buildscript upload [ filename ]
+#
+#   (where filename is path to the build script you're uploading)
+#   The actual filename doesn't matter, your Slax bundle will be
+#   called according to ${SLAX_BUNDLE_NAME}
+#
+
+# ---------------------------------------------------------------
+# First of all, we're going to describe the package we're building.
+# These variables are read by Slax server in order to collect some
+# important metadata about your bundle.
+# ---------------------------------------------------------------
+
+# Specify name of this bundle. For example, if you're building
+# thunderbird, use "thunderbird" as bundle name. It has to be
+# unique name. It is recommended that you first check if the same
+# name is not already used, by $ slax buildscript download NAME.
+# If a buildscript downloads then it's already taken and you have
+# to either contact the author with your request for improvements,
+# or rename your bundle to something else.
+# Use english name only. Allowed characters are: a-z A-Z 0-9 - + _
+# Space is not allowed. Do not include version number in the name.
+#
+SLAX_BUNDLE_NAME=""
+
+# Specify version of the module. It is recommended to
+# specify the same version as the software you're building,
+# for example if you're building firefox 17.0, put there "17.0"
+#
+SLAX_BUNDLE_VERSION=""
+
+
+# Description of the software or package you're building. 65536 chars max.
+# First line of text is a short description. Other lines are considered as
+# continuous text for longer description. So please write one line for the
+# short description, and preferably several more lines (a paragraph)
+# for longer description. This variable allows multiline input string.
+# If you need to use quotes, escape them, such like: "a quote \" example"
+# Do not include any URLs in the description.
+#
+SLAX_BUNDLE_DESCRIPTION=""
+
+# Category tags. At least one value is required.
+# Specify which categories the bundle you're building belongs to.
+# You can specify more than one. Separate by space or comma.
+# Possible values are:
+#    artwork, games, network, develop, console, graphics,
+#    editors, security, drivers, libraries, education
+#    multimedia, system, multilang, utilities
+#
+SLAX_BUNDLE_CATEGORIES=""
+
+# Specify unique names of existing Slax bundles which must be
+# activated a priori in order for your bundle to work in Slax.
+# Separate by space or comma. For example, if you're building
+# xbmc, you may need to use "libmpeg2,libass"
+#
+SLAX_BUNDLES_REQUIRED=""
+
+# If you're going to compile from sources, and the compilation
+# requires some software, specify it here. Separate names by
+# space or comma. The software you're building must run
+# without these dependencies, those are only for the compilation.
+# For example, some software may need perl or cmake to compile,
+# so use "perl,cmake" in that case.
+#
+SLAX_BUNDLES_REQUIRED_TO_COMPILE_ONLY=""
+
+# Tell us who you are, so others can contact you in case of
+# suggestions or questions. Please use valid values.
+#
+SLAX_BUNDLE_MAINTAINER_NAME=""
+SLAX_BUNDLE_MAINTAINER_EMAIL=""
+
+# All source packages which need to be downloaded, or basically
+# anything you need to download in order to produce your bundle.
+# Specify direct URL links to download. You can add just one URL
+# and leave the other empty or you can even add more than three,
+# just remember to increase the index in brackets like [4], [5]...
+# All protocols supported by wget are allowed, eg http, ftp.
+#
+SLAX_BUNDLE_SOURCE_DOWNLOAD[0]=""
+SLAX_BUNDLE_SOURCE_DOWNLOAD[1]=""
+SLAX_BUNDLE_SOURCE_DOWNLOAD[2]=""
+
+
+# --------------------------------------------------------------------
+# --------------------------------------------------------------------
+
+# We're now all set. Next command automatically performs sanity checks
+# and reports all possible problems before build procedure starts.
+# No need to change anything here, just let it run.
+#
+check_variables_for_errors
+
+# The following command downloads automatically all sources
+# from the URLs mentioned above and stores them in current directory
+# under the same name as like specified in the URLs. If any download
+# fails, the whole build script stops.
+# No need to change anything here, just let it run.
+#
+download_all_sources
+
+# We assume that all downloads were compressed tar archives
+# The next command will attempt to extract them to current directory.
+# If the extraction fails for any given source, the failure is
+# silently ignored since the downloaded file may not be compressed
+# archive at all, e.g. it may be just a graphical image or icon
+# or diff/patch or whatever.
+# No need to change anything here, just let it run.
+#
+extract_all_sources
+
+# This step creates empty directory somewhere in /tmp and stores
+# the path to it in $SLAX_BUNDLE_TARGET for you. You can think
+# of it as a virtual root filesystem for your bundle data.
+# This is actually essential and must be here.
+# No need to change anything here, just let it run.
+#
+init_bundle_target_dir
+
+# Before the processing starts, the build script will automatically
+# download and activate all Slax Bundles mentioned in the appropriate
+# variables above. If the deps are already activated, it will skip
+# them silently, no need to download again.
+# No need to change anything here, just let it run.
+#
+activate_required_bundles
+
+# Now it's up to you. Your buildscript must prepare the software
+# (for example compile it etc) and install or copy the result
+# to destination directory ${SLAX_BUNDLE_TARGET}
+# There are several variables prepared for you so you can use
+# them during configure.
+#
+# Those are:
+#
+#    ${SLAX_ARCH}
+#    ... architecture of currently running Slax, e.g. "i486"
+#
+#    ${SLAX_CFLAGS}
+#    ... compiler flags needed for current architecture
+#        for example "-Os -march=i486 -mtune=i686"
+#
+#    ${SLAX_BUNDLE_TARGET}
+#    ... as already explained this is the target directory tree
+#        where to install all files
+#
+#    ${SLAX_LIBDIR}
+#    ... library dir e.g. "/usr/lib64"
+#
+#    ${SLAX_64_FLAG}
+#    ... if the current architecture is 64bit, this variable
+#        contains just string '64' else it is empty
+#
+#    ${SLAX_CURRENT_BUILDSCRIPT_DIR}
+#    ... absolute path to current working directory, e.g. if you need
+#        to copy something from there to the target directory
+#
+#    ${SLAX_CONFIGURE_OPTIONS}
+#    ... default value to pass to configure script. For example it
+#        will be: --prefix=/usr --libdir=${SLAX_LIBDIR} --build=${SLAX_ARCH}-slackware-linux
+#
+#
+# ----------------- put your actual build code here: ---------------
+
+
+# cd ${SLAX_BUNDLE_NAME}-${SLAX_BUNDLE_VERSION}
+# CFLAGS="${SLAX_CFLAGS}" CXXFLAGS="${SLAX_CFLAGS}" ./configure ${SLAX_CONFIGURE_OPTIONS}
+# make -j 8 || make || exit 1
+# make install DESTDIR="${SLAX_BUNDLE_TARGET}"
+# cp "${SLAX_CURRENT_BUILDSCRIPT_DIR}"/myapp.desktop "${SLAX_BUNDLE_TARGET}"/usr/share/applications/
+
+
+# ----------------- that makes the package install ------------------
+
+
+# Now everything is installed in ${SLAX_BUNDLE_TARGET}
+#
+# All binaries in the target directory are stripped
+# with the following command. It is generally a good idea
+# since it makes them smaller, but removes debug information
+# from the binaries. If you insist on having debug infos
+# (which is very unusual), you may comment out the following line
+# Else just let it run.
+#
+strip_unneeded_objects
+
+# Since we have everything now installed in ${SLAX_BUNDLE_TARGET},
+# we can finally make the bundle. The following command packs all
+# files and directories from SLAX_BUNDLE_TARGET to Slax bundle.
+# It is essentially the last command in this build script.
+# Bundle file will be saved in current directory as NAME.sb
+# where NAME is actually the value of SLAX_BUNDLE_NAME.
+#
+create_slax_bundle
+
+# There could be a cleanup at this place. But it is not here.
+# Cleanup is not performed. If the buildscript is processed on server, then
+# the cleanup is not necessary at all, the build server is actually a virtual
+# Slax machine and cleanup happens automatically when it reboots. If you wish to
+# cleanup the files on your computer, you will have to remove them from
+# the current working directory manually after this buildscript ends.

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# This script gets executed at the end of rc.M
+# Author: Tomas M <www.slax.org>
+
+# destroy phonon device cache, so the user is not reminded
+# about missing devices next time he boots on a different computer
+echo -ne > /root/.kde/share/config/phonondevicesrc

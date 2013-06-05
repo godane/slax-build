@@ -1,0 +1,88 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* ===== tabbox.css =================================================
+  == Styles used by XUL tab-related elements.
+  ======================================================================= */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* ::::: tabs ::::: */
+
+tabbox > tabs {
+  height: 26px;
+  background-image: url("chrome://global/skin/icons/website_settings.png");
+  background-repeat: repeat no-repeat;
+}
+
+/* ::::: tabpanels ::::: */
+
+tabpanels {
+  -moz-appearance: none;
+  background: white;
+  border-top: none;
+  border-left: 1px solid rgba(0, 0, 0, .3);
+  border-right: 1px solid rgba(0, 0, 0, .3);
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
+  border-top: 0;
+  padding: 13px;
+  color: #000000;
+}
+
+/* ::::: tab ::::: */
+
+tabbox tab {
+  -moz-appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+  min-width: 4em;
+  padding: 0 10px !important;
+  color: #666666;
+  text-align: center;
+}
+
+tabbox tab:not([selected="true"]):hover {
+  color: #222222;
+}
+
+tabbox tab[selected="true"] {
+  background: white;
+  border-bottom-color: white !important;
+  border-color: rgba(0, 0, 0, .3);
+  position: relative;
+  box-shadow: 0px -1px 1px 0 rgba(64, 64, 64, .078);
+  color: #202020;
+}
+
+tabbox .tabs-left {
+  -moz-margin-start: 18px;
+}
+
+tabbox .tabs-right {
+  -moz-margin-end: 18px;
+}
+
+.tab-text {
+  margin: 0 !important;
+}
+
+tab:-moz-focusring > .tab-middle {
+  /* Don't specify the outline-color, we should always use initial value. */
+  outline: 1px dotted;
+}
+
+prefpane tabbox,
+dialog tabbox {
+  -moz-margin-start: -9px !important;
+  -moz-margin-end: -11px !important;
+}
+
+#tabMixTabBox {
+  padding: 0 15px !important;
+}
+#tabpanId {
+  background: transparent !important;
+}

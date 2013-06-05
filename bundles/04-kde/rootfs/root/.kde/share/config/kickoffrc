@@ -1,0 +1,11 @@
+[Favorites]
+FavoriteURLs=/usr/share/applications/mozilla-firefox.desktop,/usr/share/applications/kde4/dolphin.desktop,/root/.local/share/applications/kde4-kate.desktop,/root/.local/share/applications/pidgin.desktop,/root/.local/share/applications/kde4-kpat.desktop,/root/.local/share/applications/smplayer.desktop,/root/.local/share/applications/kde4-ksnapshot.desktop
+
+[KRunner]
+loadAll=false
+
+[KRunner][PlasmaRunnerManager]
+pluginWhiteList=places,shell,services,bookmarks,recentdocuments,locations
+
+[RecentlyUsed]
+Applications=kde4-dolphin.desktop,kde4-konqbrowser.desktop,kde4-systemsettings.desktop
