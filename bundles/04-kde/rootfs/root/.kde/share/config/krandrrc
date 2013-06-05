@@ -1,0 +1,10 @@
+[Screen_0]
+OutputsUnified=false
+UnifiedRect=0,0,0,0
+UnifiedRotation=1
+
+[Screen_0_Output_default]
+Active=true
+Rect=0,0,1024,768
+RefreshRate=60
+Rotation=1

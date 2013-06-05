@@ -1,0 +1,11 @@
+slackware:gcc
+slackware:gcc-g[+][+]
+slackware:make
+slackware:glibc
+slackware:binutils
+slackware:nasm
+slackware:pkg-config
+slackware:kernel-headers
+slackware:libmpc
+slackware:mpfr
+

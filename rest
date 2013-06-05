@@ -1,0 +1,8 @@
+rest
+
+# libs for dependencies
+slackware:cdrdao
+slackware:libao
+slackware:libogg
+slackware:libmad
+slackware:libvorbis

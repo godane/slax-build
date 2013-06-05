@@ -1,0 +1,34 @@
+[Devices][/org/freedesktop/UDisks/devices/loop0]
+EverMounted=true
+Icon=drive-harddisk
+LastNameSeen=48.8 MiB Hard Drive
+LastSeenMounted=true
+
+[Devices][/org/freedesktop/UDisks/devices/loop1]
+EverMounted=true
+Icon=drive-harddisk
+LastNameSeen=11.8 MiB Hard Drive
+LastSeenMounted=true
+
+[Devices][/org/freedesktop/UDisks/devices/loop2]
+EverMounted=true
+Icon=drive-harddisk
+LastNameSeen=80.2 MiB Hard Drive
+LastSeenMounted=true
+
+[Devices][/org/freedesktop/UDisks/devices/loop3]
+EverMounted=true
+Icon=drive-harddisk
+LastNameSeen=29.9 MiB Hard Drive
+LastSeenMounted=true
+
+[Devices][/org/freedesktop/UDisks/devices/sda1]
+Icon=drive-harddisk
+LastNameSeen=8.0 GiB Hard Drive
+LastSeenMounted=false
+
+[Devices][/org/freedesktop/UDisks/devices/sr0:media]
+EverMounted=true
+Icon=media-optical-data
+LastNameSeen=slax
+LastSeenMounted=true

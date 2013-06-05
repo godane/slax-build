@@ -1,0 +1,4 @@
+session.screen0.toolbar.widthPercent:	100
+session.screen0.toolbar.onTop:	True
+session.screen0.strftimeFormat:	%F %H:%M
+session.styleFile:	/usr/share/blackbox/styles/Default
